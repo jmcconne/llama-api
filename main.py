@@ -14,9 +14,6 @@ class InferenceRequest(BaseModel):
 
 @app.post("/complete")
 def perform_inference(request: InferenceRequest):
-    #content = request.prompt
-    #temp = request.temp
-    #return {"prompt": content, "temp": temp}
     callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
     if request.model == "llama-2-7b":
         model_path = "models/llama-2-7b/ggml-model-q8_0.gguf"
