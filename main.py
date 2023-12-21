@@ -11,6 +11,7 @@ class InferenceRequest(BaseModel):
     prompt: str
     model: str
     temp: float = 0.0
+    streaming: bool = True
 
 @app.post("/complete")
 def perform_inference(request: InferenceRequest):
@@ -29,9 +30,12 @@ def perform_inference(request: InferenceRequest):
         callback_manager=callback_manager,
         verbose=True, # Verbose is required to pass to the callback manager
         max_tokens=1024,
-        streaming=True)
+        streaming=request.streaming)
     response = llm.stream(request.prompt)
-    return StreamingResponse(response)
+    if request.streaming == True:
+        return StreamingResponse(response)
+    else:
+        pass
 
 if __name__ == "__main__":
     import uvicorn
