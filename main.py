@@ -31,7 +31,6 @@ def perform_inference(request: InferenceRequest):
         verbose=True, # Verbose is required to pass to the callback manager
         max_tokens=1024,
         streaming=request.streaming)
-    #response = llm.stream(request.prompt)
     if request.streaming == True:
         response = llm.stream(request.prompt)
         return StreamingResponse(response)
