@@ -31,11 +31,13 @@ def perform_inference(request: InferenceRequest):
         verbose=True, # Verbose is required to pass to the callback manager
         max_tokens=1024,
         streaming=request.streaming)
-    response = llm.stream(request.prompt)
+    #response = llm.stream(request.prompt)
     if request.streaming == True:
+        response = llm.stream(request.prompt)
         return StreamingResponse(response)
     else:
-        pass
+        response = llm.complete(request.prompt)
+        return response
 
 if __name__ == "__main__":
     import uvicorn
