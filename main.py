@@ -4,6 +4,7 @@ from pydantic import BaseModel
 from langchain.llms import LlamaCpp
 from langchain.callbacks.manager import CallbackManager
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
+import os
 
 app = FastAPI()
 
@@ -40,4 +41,7 @@ def perform_inference(request: InferenceRequest):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="localhost", port=8000)
+    if os.environ.get("DOCKER_CONTAINER"):
+        uvicorn.run(app, host="0.0.0.0", port=8000)
+    else:
+        uvicorn.run(app, host="127.0.0.1", port=8000)
