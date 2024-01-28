@@ -4,7 +4,7 @@
 
 ## Installation
 
-To install the project dependencies, you will need to have Python and with the venv library installed on your system. Once you have these installed, you can follow these steps:
+To install the project dependencies, you will need to have Python with the venv library installed on your system. Once you have these installed, you can follow these steps:
 
 1. Clone the project repository to your local machine.
 2. Open the project in your preferred Python IDE.
