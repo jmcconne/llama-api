@@ -4,44 +4,65 @@
 
 ## Installation
 
-To install the project dependencies, you will need to have Python with the venv library installed on your system. Once you have these installed, you can follow these steps:
+1. Clone the project repository to your local machine:
 
-1. Clone the project repository to your local machine.
-2. Open the project in your preferred Python IDE.
-3. Open a terminal session and run the following command:
+   ```
+   git clone https://github.com/jmcconne/llama-endpoint.git
+   ```
+
+2. Create and activate Python virtual environment:
 
    ```
    python3 -m venv venv
-   ```
-
-4. Once the venv environment has been created, open a terminal session and run the following command to activate the venv environment:
-
-   ```
    source venv/bin/activate
    ```
 
-5. Now run the following command in the terminal session to install the project Python package dependencies:
+3. Install project dependencies:
 
    ```
    pip install -r requirements.txt
    ```
 
+   If running on Apple Silicon, reinstall llama-cpp-python by running the following to take advantage of GPU acceleration (Metal):
+   
+   ```
+   CMAKE_ARGS="-DLLAMA_METAL=on" FORCE_CMAKE=1 pip install --upgrade --force-reinstall llama-cpp-python --no-cache-dir
+   ```
+
 ## Usage
 
-To use this project, you can follow these steps:
 
-1. Open the project in your preferred Python IDE.
-2. Open a terminal session and run the following command to activate the venv environment:
+### Start API endpoint
 
-   ```
-   source venv/bin/activate
-   ```
-
-3. Once the venv environment is activated, you can run the project code by opening the relevant Python script/notebook files and clicking the "Run" button in your IDE.
-4. Any Python packages that are subsequently installed and used in the project should be captured as new Python package dependencies by running the following command in a terminal session:
+Option 1 - Run locally
 
    ```
-   pip freeze > requirements.txt
+   python main.py
+   ```
+
+Option 2 - Run in Docker container
+
+   Build Docker image:
+
+   ```
+   docker build -t llama-endpoint .
+   ```
+
+   Create and start Docker container:
+
+   ```
+   docker run -p 8000:8000 --name llama-endpoint llama-endpoint
+   ```
+
+### Send request to API
+
+   ```
+   import requests
+
+   url = "http://localhost:8000/complete"
+   data = {"prompt": "What are the first five prime numbers?", "model": "llama-2-7b", "temp": 0}
+   response = requests.post(url, json=data, stream=True)
+   print(response.content.decode("utf-8").strip())
    ```
 
 ## Contributing
