@@ -25,7 +25,7 @@ def perform_inference(request: InferenceRequest):
         model_path=model_path,
         temperature=request.temp,
         n_ctx=3072,
-        n_gpu_layers=1,  # Metal set to 1 is enough.
+        n_gpu_layers=-1,  # Offload all layers to GPU
         n_batch=512, # Should be between 1 and n_ctx, consider the amount of RAM of your Apple Silicon Chip.
         f16_kv=True,  # MUST set to True, otherwise you will run into problem after a couple of calls
         callback_manager=callback_manager,
