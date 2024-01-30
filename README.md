@@ -32,7 +32,7 @@
 4. Download Llama 2 Models (must be in GGUF format):
 
    ```
-   huggingface-cli download TheBloke/Llama-2-7b-Chat-GGUF llama-2-7b-chat.Q4_K_M.gguf --local-dir ./models_alt --local-dir-use-symlinks False
+   huggingface-cli download TheBloke/Llama-2-7b-Chat-GGUF llama-2-7b-chat.Q4_K_M.gguf --local-dir ./models --local-dir-use-symlinks False
    ```
 
 ## Usage
