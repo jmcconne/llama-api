@@ -29,6 +29,12 @@
    CMAKE_ARGS="-DLLAMA_METAL=on" FORCE_CMAKE=1 pip install --upgrade --force-reinstall llama-cpp-python --no-cache-dir
    ```
 
+4. Download Llama 2 Models (must be in GGUF format):
+
+   ```
+   huggingface-cli download TheBloke/Llama-2-7b-Chat-GGUF llama-2-7b-chat.Q4_K_M.gguf --local-dir ./models_alt --local-dir-use-symlinks False
+   ```
+
 ## Usage
 
 
@@ -60,7 +66,7 @@ Option 2 - Run in Docker container
    import requests
 
    url = "http://localhost:8000/complete"
-   data = {"prompt": "What are the first five prime numbers?", "model": "llama-2-7b", "temp": 0}
+   data = {"prompt": "What are the first five prime numbers?", "model": "llama-2-7b-chat.Q4_K_M.gguf", "temp": 0}
    response = requests.post(url, json=data, stream=True)
    print(response.content.decode("utf-8").strip())
    ```
