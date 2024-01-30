@@ -31,12 +31,12 @@
 
 4. Download Llama 2 Models (must be in GGUF format):
 
-   Example using the Hugging Face CLI and the popular quantized, GGUF formatted Llama 2 models from TheBloke:
+   Example using the Hugging Face CLI and the popular quantized, GGUF formatted Llama 2 models from [TheBloke](https://huggingface.co/TheBloke):
    ```
    huggingface-cli download TheBloke/Llama-2-7b-Chat-GGUF llama-2-7b-chat.Q4_K_M.gguf --local-dir ./models --local-dir-use-symlinks False
    ```
 
-   Alternatively, you can simply copy a GGUF formatted Llama 2 model to the models directory.
+   Alternatively, you can simply copy GGUF formatted Llama 2 models to the `./models` directory.
 
 ## Usage
 
